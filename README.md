@@ -93,7 +93,7 @@ python p2_train_eval.py
 
 ## Deliverables Generated
 After running all the above scripts sequentially, the following outputs will be populated in your directory:
-- Custom Text Corpus: `cleaned_corpus.txt`
+- Custom Text Corpus: `corpus.txt`
 - Generated Indian Names: `generated_vanilla_rnn.txt`, `generated_blstm.txt`, `generated_rnn_plus_attention.txt`
 - Visualizations: `.png` files for word clouds and embedding projections.
 - Trained Model Weights: `.npy` matrices and `.model` files.
