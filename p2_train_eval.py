@@ -26,6 +26,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 import torch.optim as optim
+import pickle
 from collections import Counter
 
 # Import our from-scratch models
@@ -521,6 +522,12 @@ def main():
     print("\nBuilding character vocabulary...")
     char2idx, idx2char, vocab_size = build_char_vocab(names)
 
+    # Save vocabulary
+    vocab_save_path = os.path.join(script_dir, "vocab_p2.pkl")
+    with open(vocab_save_path, 'wb') as f:
+        pickle.dump({'char2idx': char2idx, 'idx2char': idx2char}, f)
+    print(f"  Vocabulary saved to: {vocab_save_path}")
+
     # ----------------------------------------------------------------
     # Initialize all three models
     # ----------------------------------------------------------------
@@ -592,6 +599,11 @@ def main():
             for name in generated:
                 f.write(name + '\n')
         print(f"  Generated names saved to: {gen_file}")
+
+        # Save model state dict
+        model_save_path = os.path.join(script_dir, f"{model_name.replace(' ', '_').replace('+', 'plus').lower()}.pkl")
+        torch.save(trained_model.state_dict(), model_save_path)
+        print(f"  Model saved to: {model_save_path}")
 
     # ----------------------------------------------------------------
     # Cross-model comparison

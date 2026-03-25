@@ -11,8 +11,8 @@ This repository contains the source code for Programming Assignment 2, which inv
 - `p1_stats_wordcloud.py` - Computes dataset statistics and generates the `wordcloud.png` visualization.
 - `p1_word2vec_scratch.py` - Implements, trains, evaluates, and visualizes Word2Vec (CBOW & Skip-gram) entirely from scratch in PyTorch.
 - `p1_word2vec_gensim.py` - Trains and evaluates equivalent Word2Vec models using the `gensim` library for comparison.
-- `p2_models.py` - Contains the PyTorch class definitions for Vanilla RNN, Bidirectional LSTM, and RNN+Attention.
-- `p2_train_eval.py` - Trains the three character-level RNN models on `TrainingNames.txt`, performs quantitative/qualitative evaluations, and saves the generated names.
+- `p2_train_eval.py` - Trains the three character-level RNN models on `TrainingNames.txt`, performs quantitative/qualitative evaluations, and saves the models as `.pkl` files.
+- `evaluation.py` - A standalone script to load saved models and perform independent evaluation without retraining.
 - `Report.tex` / `Report.pdf` - The final compiled report containing theory, analysis, comparisons, and outputs.
 
 ## Setup Instructions
@@ -87,7 +87,15 @@ Make sure the `TrainingNames.txt` dataset file is located in the same directory.
 ```bash
 python p2_train_eval.py
 ```
-*(This script will train all three models sequentially. It will print the training loss progression, trainable parameters, generation outputs, novelty percentages, and diversity scores. It will also dump the generated names into separate `.txt` files.)*
+*(This script will train all three models sequentially. It will print the training loss progression, trainable parameters, generation outputs, novelty percentages, and diversity scores. It will also dump the generated names into separate `.txt` files and save the model state dicts as `.pkl` files.*
+
+**Task 4: Independent Evaluation**
+To evaluate the pre-trained models without retraining:
+```bash
+python evaluation.py
+```
+*(This script loads `vanilla_rnn.pkl`, `blstm.pkl`, and `rnn_plus_attention.pkl` along with `vocab_p2.pkl` to reproduce the evaluation metrics and qualitative analyses.)*
+
 
 ---
 
@@ -96,4 +104,5 @@ After running all the above scripts sequentially, the following outputs will be 
 - Custom Text Corpus: `corpus.txt`
 - Generated Indian Names: `generated_vanilla_rnn.txt`, `generated_blstm.txt`, `generated_rnn_plus_attention.txt`
 - Visualizations: `.png` files for word clouds and embedding projections.
-- Trained Model Weights: `.npy` matrices and `.model` files.
+- Trained Model Weights: `.npy` matrices, `.model` files, and `.pkl` state dictionaries (`vanilla_rnn.pkl`, `blstm.pkl`, `rnn_plus_attention.pkl`).
+- Character Vocabulary: `vocab_p2.pkl`
