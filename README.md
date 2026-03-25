@@ -31,7 +31,7 @@ source venv/bin/activate
 ### 2. Install Dependencies
 Install the required Python packages:
 ```bash
-pip install torch torchvision torchaudio numpy matplotlib wordcloud beautifulsoup4 requests gensim scikit-learn
+pip install torch torchvision torchaudio numpy matplotlib wordcloud beautifulsoup4 requests gensim scikit-learn pymupdf
 ```
 
 ---
